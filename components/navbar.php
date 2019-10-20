@@ -1,3 +1,4 @@
+<?php include_once "database/install.php" ?>
 <div class="navBarStyle">
     <ul>
         <li><a class="active" href="#home">Home</a></li>
