@@ -17,11 +17,9 @@ function create_product($name, $price, $category = NULL, $img = NULL)
 	if (! file_exists("database/products"))
 		$db = array();
 	else
-	{
 		$db = unserialize(file_get_contents("database/products"));
-		if (exist_in_db($name, "name", $db))
-			return FALSE;
-	}
+	if (exist_in_db($name, "name", $db))
+		return FALSE;
 	$product[name] = $name;
 	$product[price] = $price;
 	if (isset($category))
@@ -70,12 +68,12 @@ function destroy_product($name)
 	return TRUE;
 }
 
-function modify_product($name, $new_product)
+function modify_product($name, $new_name = NULL, $new_price = NULL, $new_categories = NULL, $new_img = NULL)
 {
 	if (! file_exists("database") || ! file_exists("database/products") || ! file_exists("database/categories")
-	|| (isset($new_product[price]) && (gettype($new_product[price]) != "double" && gettype($new_product[price]) != "integer"))
-	|| (isset($new_product[categories]) && gettype($new_product[categories]) != "array")
-	|| (isset($new_product[name]) && $new_product[name] == "") || (isset($new_product[img]) && $new_product[img] == ""))
+	|| (isset($new_price) && (gettype($new_price) != "double" && gettype($new_price) != "integer"))
+	|| (isset($new_categories) && gettype($new_categories) != "array")
+	|| (isset($new_name) && $new_name == "") || (isset($new_img) && $new_img == ""))
 		return FALSE;
 	$db = unserialize(file_get_contents("database/products"));
 	$categories = unserialize(file_get_contents("database/categories"));
@@ -85,18 +83,18 @@ function modify_product($name, $new_product)
 		if ($current[name] == $name)
 			$product = $current;
 	$key = array_search($product, $db);
-	if (isset($new_product[name]))
-		$db[$key][name] = $new_product[name];
-	if (isset($new_product[price]))
-		$db[$key][price] = $new_product[price];
-	if (isset($new_product[img]))
-		$db[$key][img] = $new_product[img];
-	if (isset($new_product[categories]))
+	if (isset($new_name))
+		$db[$key][name] = $new_name;
+	if (isset($new_price))
+		$db[$key][price] = $new_price;
+	if (isset($new_img))
+		$db[$key][img] = $new_img;
+	if (isset($new_categories))
 	{
-		$db[$key][categories] = $new_product[categories];
+		$db[$key][categories] = $new_categories;
 		foreach($product[categories] as $key => $category)
 			unset($categories[$category][array_search($key, $categories[$category])]);
-		foreach	($new_product[categories] as $category)
+		foreach	($new_categories as $category)
 			$categories[$category][] = $key;
 	}
 	file_put_contents('database/products', serialize($db));

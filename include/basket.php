@@ -23,4 +23,16 @@ function basket($uid, $id, $amount = 1)
 	file_put_contents("database/baskets", serialize($baskets));
 	return TRUE;
 }
+
+function basket_delete($uid)
+{
+	if (! file_exists("database") || ! file_exists("database/baskets"))
+		return FALSE;
+	$baskets = unserialize(file_get_contents("database/baskets"));	
+	if (!isset($baskets[$uid]))
+		return FALSE;
+	unset($baskets[$uid]);
+	file_put_contents("database/baskets", serialize($baskets));
+	return TRUE;
+}
 ?>
