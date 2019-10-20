@@ -12,7 +12,7 @@ function create_user($login, $passwd, $extra = NULL)
 		$users = unserialize(file_get_contents("database/users"));
 	if (isset($users[$login]))
 		return FALSE;
-	$users[$login][passwd]=hash("sha512", $passd);
+	$users[$login][passwd]=hash("sha512", $passwd);
 	if (isset($extra[name]))
 		$users[$login][name] = $extra[name];
 	if (isset($extra[surname]))
