@@ -1,8 +1,7 @@
 <?PHP
 function create_user($login, $passwd, $extra = NULL)
 {
-	if (gettype($login) != "string" || gettype($passwd) != "string" || (isset($extra[name]) && gettype($extra[name]) != "string")
-	|| (isset($extra[surname]) && gettype($extra[surname]) != "string") || (isset($extra[permission]) && gettype($extra[permission]) != "integer"))
+	if (gettype($login) != "string" || gettype($passwd) != "string"	|| (isset($extra[permission]) && gettype($extra[permission]) != "integer"))
 		return FALSE;
 	if (! file_exists("../database"))
 		mkdir("database");
@@ -13,10 +12,6 @@ function create_user($login, $passwd, $extra = NULL)
 	if (isset($users[$login]))
 		return FALSE;
 	$users[$login][passwd]=hash("sha512", $passwd);
-	if (isset($extra[name]))
-		$users[$login][name] = $extra[name];
-	if (isset($extra[surname]))
-		$users[$login][surname] = $extra[surname];
 	if (isset($extra[permission]))
 		$users[$login][permission] = $extra[permission];
 	else
