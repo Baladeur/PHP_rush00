@@ -1,7 +1,7 @@
 <?PHP
-function basket($uid, $id, $amount = 1)
+function basket($login, $id, $amount = 1)
 {
-	if (gettype($uid) != "integer" || gettype($id) != "integer" || gettype($amount) != "integer")
+	if (gettype($login) != "string" || gettype($id) != "integer" || gettype($amount) != "integer")
 		return FALSE;
 	if (! file_exists("database"))
 		mkdir("database");
@@ -9,29 +9,29 @@ function basket($uid, $id, $amount = 1)
 		$baskets = array();
 	else
 		$baskets = unserialize(file_get_contents("database/baskets"));
-	if (isset($baskets[$uid]) && isset($baskets[$uid][$id]))
-		if ($baskets[$uid][$id] + $amount >= 0)
-			$baskets[$uid][$id] += $amount;
+	if (isset($baskets[$login]) && isset($baskets[$login][$id]))
+		if ($baskets[$login][$id] + $amount >= 0)
+			$baskets[$login][$id] += $amount;
 		else
 			return FALSE;
 	elseif ($amount > 0)
-		$baskets[$uid][$id] = $amount;
+		$baskets[$login][$id] = $amount;
 	else
 		return FALSE;
-	if ($baskets[$uid][$id] == 0)
-		unset($baskets[$uid][$id]);
+	if ($baskets[$login][$id] == 0)
+		unset($baskets[$login][$id]);
 	file_put_contents("database/baskets", serialize($baskets));
 	return TRUE;
 }
 
-function basket_delete($uid)
+function basket_delete($login)
 {
 	if (! file_exists("database") || ! file_exists("database/baskets"))
 		return FALSE;
 	$baskets = unserialize(file_get_contents("database/baskets"));	
-	if (!isset($baskets[$uid]))
+	if (!isset($baskets[$login]))
 		return FALSE;
-	unset($baskets[$uid]);
+	unset($baskets[$login]);
 	file_put_contents("database/baskets", serialize($baskets));
 	return TRUE;
 }

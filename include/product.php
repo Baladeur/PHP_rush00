@@ -68,12 +68,12 @@ function destroy_product($name)
 	return TRUE;
 }
 
-function modify_product($name, $new_name = NULL, $new_price = NULL, $new_categories = NULL, $new_img = NULL)
+function modify_product($name, $new)
 {
-	if (! file_exists("database") || ! file_exists("database/products") || ! file_exists("database/categories")
-	|| (isset($new_price) && (gettype($new_price) != "double" && gettype($new_price) != "integer"))
-	|| (isset($new_categories) && gettype($new_categories) != "array")
-	|| (isset($new_name) && $new_name == "") || (isset($new_img) && $new_img == ""))
+	if (! file_exists("database") || ! file_exists("database/products") || ! file_exists("database/categories")|| isset($new)
+	|| !count($new) || (isset($new[price]) && (gettype($new[price]) != "double" && gettype($new[price]) != "integer"))
+	|| (isset($new[categories]) && gettype($new[categories]) != "array")
+	|| (isset($new[name]) && $new[name] == "") || (isset($new[img]) && $new[img] == ""))
 		return FALSE;
 	$db = unserialize(file_get_contents("database/products"));
 	$categories = unserialize(file_get_contents("database/categories"));
@@ -83,18 +83,18 @@ function modify_product($name, $new_name = NULL, $new_price = NULL, $new_categor
 		if ($current[name] == $name)
 			$product = $current;
 	$key = array_search($product, $db);
-	if (isset($new_name))
-		$db[$key][name] = $new_name;
-	if (isset($new_price))
-		$db[$key][price] = $new_price;
-	if (isset($new_img))
-		$db[$key][img] = $new_img;
-	if (isset($new_categories))
+	if (isset($new[name]))
+		$db[$key][name] = $new[name];
+	if (isset($new[price]))
+		$db[$key][price] = $new[price];
+	if (isset($new[img]))
+		$db[$key][img] = $new[img];
+	if (isset($new[categories]))
 	{
-		$db[$key][categories] = $new_categories;
+		$db[$key][categories] = $new[categories];
 		foreach($product[categories] as $key => $category)
 			unset($categories[$category][array_search($key, $categories[$category])]);
-		foreach	($new_categories as $category)
+		foreach	($new[categories] as $category)
 			$categories[$category][] = $key;
 	}
 	file_put_contents('database/products', serialize($db));
