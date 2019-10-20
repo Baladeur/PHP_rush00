@@ -19,6 +19,7 @@ function begin_display() {
         background-color: white;
         border-radius: 5px;
         text-align: center;
+        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.10);
     }
     
     .my_img_container {

@@ -41,6 +41,156 @@
         </div>
 
         <div class="image">
+            <img src="img/item-1.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Common Projects</span>
+            <span>Bball High</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="minus-btn" type="button" name="button">
+                <img src="img/minus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="plus-btn" type="button" name="button">
+                <img src="img/plus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$549</div>
+    </div>
+
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="img/item-1.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Common Projects</span>
+            <span>Bball High</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="minus-btn" type="button" name="button">
+                <img src="img/minus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="plus-btn" type="button" name="button">
+                <img src="img/plus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$549</div>
+    </div>
+
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="img/item-1.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Common Projects</span>
+            <span>Bball High</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="minus-btn" type="button" name="button">
+                <img src="img/minus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="plus-btn" type="button" name="button">
+                <img src="img/plus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$549</div>
+    </div>
+
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="img/item-1.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Common Projects</span>
+            <span>Bball High</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="minus-btn" type="button" name="button">
+                <img src="img/minus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="plus-btn" type="button" name="button">
+                <img src="img/plus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$549</div>
+    </div>
+
+<?php 
+?>
+</div>
+<?php
+/*
+<div class="shopping-cart">
+    <div class="title">
+        Shopping Cart
+    </div>
+
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="img/item-1.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Common Projects</span>
+            <span>Bball High</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="minus-btn" type="button" name="button">
+                <img src="img/minus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="plus-btn" type="button" name="button">
+                <img src="img/plus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$549</div>
+    </div>
+
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+        </div>
+
+        <div class="image">
             <img src="img/default.png" alt="" />
         </div>
 
@@ -138,6 +288,9 @@
     });
 </script>
 
+<?php include "components/footer.php" ?>
+*/
+?>
 <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
 
@@ -329,4 +482,3 @@
         }
     }
 </style>
-<?php include "components/footer.php" ?>

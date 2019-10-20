@@ -37,29 +37,17 @@ function destroy_user($login)
 	return FALSE;
 }
 
-function modify_user($login, $passwd, $new = NULL)
+function modify_user($login, $new = NULL)
 {
-	if (! file_exists("database") || ! file_exists("database/users") || gettype($login) != "string" || gettype($passwd) != "string" || !isset($new)
-	|| !count($new) || (isset($new[passwd]) && gettype($new[passwd]) != "string") || (isset($new[surname]) && gettype($new[surname]) != "string")
-	|| (isset($new[permission]) && gettype($new[permission]) != "integer") || (isset($new[name]) && gettype($new[name]) != "string"))
+	if (! file_exists("database") || ! file_exists("database/users") || gettype($login) != "string" || !isset($new)
+	|| !count($new) || (isset($new[passwd]) && gettype($new[passwd]) != "string")
+	|| (isset($new[permission]) && gettype($new[permission]) != "integer"))
 		return FALSE;
 	$users = unserialize(file_get_contents("database/users"));
 	if (!isset($users[$login]))
 		return FALSE;
-	if (isset($new[passwd]) && hash("sha512", $new[passwd]) == $users[$login])
+	if (isset($new[passwd]))
 		$users[$login][passwd] = hash("sha512", $new[passwd]);
-	elseif (isset($new[passwd]))
-		return FALSE;
-	if (isset($new[name]))
-		if ($new[name] != "")
-			$users[$login][name] = $new[name];
-		else
-			unset($users[$login][name]);
-	if (isset($new[surname]))
-		if ($new[surname] != "")
-			$users[$login][surname] = $new[surname];
-		else
-			unset($users[$login][surname]);
 	if (isset($new[permission]))
 		$users[$login][permission] = $new[permission];
 	file_put_contents("database/users", serialize($users));
