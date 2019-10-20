@@ -4,12 +4,12 @@ function create_user($login, $passwd, $extra = NULL)
 	if (gettype($login) != "string" || gettype($passwd) != "string" || (isset($extra[name]) && gettype($extra[name]) != "string")
 	|| (isset($extra[surname]) && gettype($extra[surname]) != "string") || (isset($extra[permission]) && gettype($extra[permission]) != "integer"))
 		return FALSE;
-	if (! file_exists("database"))
+	if (! file_exists("../database"))
 		mkdir("database");
-	if (! file_exists("database/users"))
+	if (! file_exists("../database/users"))
 		$users = array();
 	else
-		$users = unserialize(file_get_contents("database/users"));
+		$users = unserialize(file_get_contents("../database/users"));
 	if (isset($users[$login]))
 		return FALSE;
 	$users[$login][passwd]=hash("sha512", $passwd);
@@ -21,7 +21,7 @@ function create_user($login, $passwd, $extra = NULL)
 		$users[$login][permission] = $extra[permission];
 	else
 		$users[$login][permission] = 0;
-	file_put_contents("database/users", serialize($users));
+	file_put_contents("../database/users", serialize($users));
 	return TRUE;
 }
 
