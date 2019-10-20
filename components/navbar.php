@@ -16,7 +16,8 @@ session_start();
             if (isset($_SESSION['loggued_on_user']) && $_SESSION('loggued_on_user') != NULL) {
                 echo"
                 <li style=\"float:right\"><a href=\"/logout.php\">Logout</a></li>";
-                echo "<script>alert('ddd')</script>";
+                // If user is an admin
+                echo "<li style=\"float:right\"><a href=\"/admin.php\">admin</a></li>";
             } else {
                 echo "
                 <li style=\"float:right\"><a href=\"/login.php\">Login</a></li>
