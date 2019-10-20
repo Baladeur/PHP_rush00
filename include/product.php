@@ -9,8 +9,8 @@ function exist_in_db($name, $key, $db)
 
 function create_product($name, $price, $category = NULL, $img = NULL)
 {
-	if (gettype($name) != "string" || !(gettype($price) == "double" || gettype($price) == "integer") || (isset($img) && gettype($img) != "string"
-	|| (isset($category) && !(gettype($category) == "string" || gettype($category) == "array"))))
+	if (gettype($name) != "string" || (gettype($price) != "double" && gettype($price) != "integer") || (isset($img) && gettype($img) != "string"
+	|| (isset($category) && gettype($category) != "string" && gettype($category) != "array")))
 		return FALSE;
 	if (! file_exists("database"))
 		mkdir("database");
@@ -73,7 +73,7 @@ function destroy_product($name)
 function modify_product($name, $new_product)
 {
 	if (! file_exists("database") || ! file_exists("database/products") || ! file_exists("database/categories")
-	|| (isset($new_product[price]) && !(gettype($new_product[price]) == "double" || gettype($new_product[price]) == "integer"))
+	|| (isset($new_product[price]) && (gettype($new_product[price]) != "double" && gettype($new_product[price]) != "integer"))
 	|| (isset($new_product[categories]) && gettype($new_product[categories]) != "array")
 	|| (isset($new_product[name]) && $new_product[name] == "") || (isset($new_product[img]) && $new_product[img] == ""))
 		return FALSE;

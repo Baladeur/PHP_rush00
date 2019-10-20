@@ -1,7 +1,7 @@
 <?PHP
 function create_category($name, $ids = NULL)
 {
-	if (! gettype($name) == "string" || (isset($ids) && (! gettype($ids) == "array" || ! file_exists("database/products"))))
+	if (gettype($name) != "string" || (isset($ids) && (gettype($ids) != "array" || ! file_exists("database/products"))))
 		return FALSE;
 	if (! file_exists("database"))
 		mkdir("database");
