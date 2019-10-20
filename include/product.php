@@ -7,10 +7,10 @@ function exist_in_db($name, $key, $db)
 	return (FALSE);
 }
 
-function create_product($name, $price, $category = NULL, $img = NULL)
+function create_product($name, $price, $add)
 {
-	if (gettype($name) != "string" || (gettype($price) != "double" && gettype($price) != "integer") || (isset($img) && gettype($img) != "string"
-	|| (isset($category) && gettype($category) != "string" && gettype($category) != "array")))
+	if (gettype($name) != "string" || (gettype($price) != "double" && gettype($price) != "integer") || (isset($add[img]) && gettype($add[img]) != "string"
+	|| (isset($add[category]) && gettype($add[category]) != "string" && gettype($add[category]) != "array")))
 		return FALSE;
 	if (! file_exists("database"))
 		mkdir("database");
@@ -22,26 +22,26 @@ function create_product($name, $price, $category = NULL, $img = NULL)
 		return FALSE;
 	$product[name] = $name;
 	$product[price] = $price;
-	if (isset($category))
+	if (isset($add[category]))
 	{
-		if (gettype($category) == "array")
-			$product[categories] = $category;
+		if (gettype($add[category]) == "array")
+			$product[categories] = $add[category];
 		else
-			$product[categories][0] = $category;
+			$product[categories][0] = $add[category];
 	}
-	if (isset($img))
-		$product[img] = $img;
+	if (isset($add[img]))
+		$product[img] = $add[img];
 	else
 		$product[img] = "img/default.png";
 	$db[] = $product;
-	if (isset($category))
+	if (isset($add[category]))
 	{
 		if (! file_exists("database/categories"))
 			$categories = array();
 		else
 			$categories = unserialize(file_get_contents("database/categories"));
-		foreach	($product[categories] as $category)
-			$categories[$category][] = array_search($product, $db);
+		foreach	($product[categories] as $add[category])
+			$categories[$add[category]][] = array_search($product, $db);
 		file_put_contents('database/categories', serialize($categories));
 	}
 	file_put_contents('database/products', serialize($db));

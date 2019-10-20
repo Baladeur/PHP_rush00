@@ -1,6 +1,9 @@
 <?php include "components/header.php" ?>
 <?php include "components/navbar.php" ?>
-
+<?php if (isset($_SESSION[loggued_on_user]) && $_SESSION[loggued_on_user] != NULL):
+    header("Location: index.php");
+?>
+<?php else: ?>
 <div class="panda">
     <div class="ear"></div>
     <div class="face">
@@ -38,6 +41,6 @@
         <button class="btn">Login </button>
     </div>
 </form>
-
+<?php endif; ?>
 
 <?php include "components/footer.php" ?>

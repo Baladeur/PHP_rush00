@@ -1,1 +1,1 @@
-a:9:{s:9:"Foodstuff";a:0:{}s:7:"Clothes";a:0:{}s:5:"Games";a:0:{}s:11:"Electronics";a:0:{}s:5:"Music";a:0:{}s:6:"Movies";a:0:{}s:5:"Books";a:0:{}s:5:"Shoes";a:0:{}s:5:"Other";a:0:{}}
+a:7:{s:7:"Clothes";a:2:{i:0;i:0;i:1;i:1;}s:5:"Shoes";a:1:{i:0;i:0;}s:4:"Food";a:1:{i:0;i:2;}s:5:"Other";a:1:{i:0;i:2;}s:5:"Games";a:2:{i:0;i:3;i:1;i:4;}s:11:"Electronics";a:1:{i:0;i:4;}s:5:"Music";a:0:{}}

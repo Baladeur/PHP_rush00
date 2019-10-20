@@ -60,7 +60,7 @@ function modify_user($login, $passwd, $new = NULL)
 			$users[$login][surname] = $new[surname];
 		else
 			unset($users[$login][surname]);
-	if (isset($new_premission))
+	if (isset($new[permission]))
 		$users[$login][permission] = $new[permission];
 	file_put_contents("database/users", serialize($users));
 	return TRUE;

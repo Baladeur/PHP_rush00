@@ -12,6 +12,6 @@ include('user.php');
 	header("Location: ../register.php?creation=failure3");
 ?>
 <?PHP else:
-	header("Location: ../regisetr.php?creation=success");
+	header("Location: ../register.php?creation=success");
 ?>
 <?PHP endif; ?>
